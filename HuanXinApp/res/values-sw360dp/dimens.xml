@@ -1,0 +1,45 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <!-- Main Sceen -->
+    <dimen name="sp10">11sp</dimen>
+    <dimen name="sp12">13sp</dimen>
+    <dimen name="sp13">15sp</dimen>
+    <dimen name="sp15">17sp</dimen>
+    <dimen name="sp18">20sp</dimen>
+    <dimen name="sp20">23sp</dimen>
+    <dimen name="sp25">28sp</dimen>
+    
+    <dimen name="dp5">6dp</dimen>
+    <dimen name="dp10">11dp</dimen>
+    <dimen name="dp15">17dp</dimen>
+    <dimen name="dp20">23dp</dimen>
+    <dimen name="dp25">28dp</dimen>
+    <dimen name="dp30">34dp</dimen>
+    <dimen name="dp32">36dp</dimen>
+    <dimen name="dp35">39dp</dimen>
+    <dimen name="dp40">45dp</dimen>
+    <dimen name="dp45">51dp</dimen>
+    <dimen name="dp50">56dp</dimen>
+    <dimen name="dp60">68dp</dimen>
+    <dimen name="dp65">73dp</dimen>
+    <dimen name="dp70">79dp</dimen>
+    <dimen name="dp75">84dp</dimen>
+    <dimen name="dp80">90dp</dimen>
+    <dimen name="dp90">101dp</dimen>
+    <dimen name="dp100">112dp</dimen>
+    <dimen name="dp110">124dp</dimen>
+    <dimen name="dp120">135dp</dimen>
+    <dimen name="dp130">146dp</dimen>
+    <dimen name="dp150">169dp</dimen>
+    <dimen name="dp160">180dp</dimen>
+    <dimen name="dp165">186dp</dimen>
+    <dimen name="dp170">191dp</dimen>
+    <dimen name="dp190">214dp</dimen>
+    <dimen name="dp200">225dp</dimen>
+    <dimen name="dp230">259dp</dimen>
+    <dimen name="dp260">293dp</dimen>
+    <dimen name="dp290">326dp</dimen>
+    <dimen name="dp300">338dp</dimen>
+
+</resources>

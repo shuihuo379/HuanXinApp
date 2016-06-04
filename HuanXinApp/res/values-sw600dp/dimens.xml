@@ -1,0 +1,46 @@
+<resources>
+
+    <!--
+         Customize dimensions originally defined in res/values/dimens.xml (such as
+         screen margins) for sw600dp devices (e.g. 7" tablets) here.
+    -->
+
+    <dimen name="sp10">19sp</dimen>
+    <dimen name="sp12">23sp</dimen>
+    <dimen name="sp13">24sp</dimen>
+    <dimen name="sp15">28sp</dimen>
+    <dimen name="sp18">34sp</dimen>
+    <dimen name="sp25">47sp</dimen>
+    
+    <dimen name="dp5">9dp</dimen>
+    <dimen name="dp10">19dp</dimen>
+    <dimen name="dp15">28dp</dimen>
+    <dimen name="dp20">38dp</dimen>
+    <dimen name="dp25">47dp</dimen>
+    <dimen name="dp30">56dp</dimen>
+    <dimen name="dp32">60dp</dimen>
+    <dimen name="dp35">39dp</dimen>
+    <dimen name="dp40">66dp</dimen>
+    <dimen name="dp45">84dp</dimen>
+    <dimen name="dp50">94dp</dimen>
+    <dimen name="dp60">113dp</dimen>
+    <dimen name="dp65">122dp</dimen>
+    <dimen name="dp70">131dp</dimen>
+    <dimen name="dp75">141dp</dimen>
+    <dimen name="dp80">150dp</dimen>
+    <dimen name="dp90">169dp</dimen>
+    <dimen name="dp100">188dp</dimen>
+    <dimen name="dp110">206dp</dimen>
+    <dimen name="dp120">225dp</dimen>
+    <dimen name="dp130">244dp</dimen>
+    <dimen name="dp150">281dp</dimen>
+    <dimen name="dp160">300dp</dimen>
+    <dimen name="dp165">309dp</dimen>
+    <dimen name="dp170">319dp</dimen>
+    <dimen name="dp190">356dp</dimen>
+    <dimen name="dp200">375dp</dimen>
+    <dimen name="dp230">431dp</dimen>
+    <dimen name="dp260">488dp</dimen>
+    <dimen name="dp290">544dp</dimen>
+    <dimen name="dp300">563dp</dimen>
+</resources>

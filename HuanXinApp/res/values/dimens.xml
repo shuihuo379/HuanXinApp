@@ -1,0 +1,62 @@
+<resources>
+
+     <dimen name="height_top_bar">48dp</dimen>
+    <dimen name="padding_search_bar">5dp</dimen>
+    <dimen name="height_row_weixin">59dp</dimen>
+    <dimen name="size_avatar">50dp</dimen>
+    <dimen name="margin_chat_activity">5dp</dimen>
+    <dimen name="field_textsize">14sp</dimen>
+    <dimen name="field_margin_right">5dp</dimen>
+    <dimen name="call_button_padding_vertical">10dp</dimen>
+    <dimen name="call_button_padding_left">25dp</dimen>
+    <dimen name="call_button_padding_right">25dp</dimen>
+    <dimen name="sidebar_text_size">10dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+     <dimen name="image_thumbnail_size">100dp</dimen>
+    <dimen name="image_thumbnail_spacing">1dp</dimen>
+    
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="sp10">10sp</dimen>
+    <dimen name="sp12">12sp</dimen>
+    <dimen name="sp13">13sp</dimen>
+    <dimen name="sp15">15sp</dimen>
+    <dimen name="sp18">18sp</dimen>
+    <dimen name="sp20">20sp</dimen>
+    <dimen name="sp25">25sp</dimen>
+    
+    <dimen name="dp5">5dp</dimen>
+    <dimen name="dp10">10dp</dimen>
+    <dimen name="dp12">12dp</dimen>
+    <dimen name="dp15">15dp</dimen>
+    <dimen name="dp20">20dp</dimen>
+    <dimen name="dp25">25dp</dimen>
+    <dimen name="dp30">30dp</dimen>
+    <dimen name="dp32">32dp</dimen>
+    <dimen name="dp35">35dp</dimen>
+    <dimen name="dp40">40dp</dimen>
+    <dimen name="dp45">45dp</dimen>
+    <dimen name="dp50">50dp</dimen>
+    <dimen name="dp60">60dp</dimen>
+    <dimen name="dp65">65dp</dimen>
+    <dimen name="dp70">70dp</dimen>
+    <dimen name="dp75">75dp</dimen>
+    <dimen name="dp80">80dp</dimen>
+    <dimen name="dp90">90dp</dimen>
+    <dimen name="dp100">100dp</dimen>
+    <dimen name="dp110">110dp</dimen>
+    <dimen name="dp120">120dp</dimen>
+    <dimen name="dp130">130dp</dimen>
+    <dimen name="dp150">150dp</dimen>
+    <dimen name="dp160">160dp</dimen>
+    <dimen name="dp165">165dp</dimen>
+    <dimen name="dp170">170dp</dimen>
+    <dimen name="dp190">190dp</dimen>
+    <dimen name="dp200">200dp</dimen>
+    <dimen name="dp230">230dp</dimen>
+    <dimen name="dp260">260dp</dimen>
+    <dimen name="dp290">290dp</dimen>
+    <dimen name="dp300">300dp</dimen>
+    <dimen name="dp350">350dp</dimen>
+
+</resources>
