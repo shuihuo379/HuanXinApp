@@ -28,5 +28,11 @@
         <item name="android:activityCloseExitAnimation">@anim/slide_out_to_right</item>
   		<item name="android:activityCloseEnterAnimation">@anim/slide_in_from_left</item>
     </style>
+    
+    <!-- 右上角popupwindow -->
+    <style name="AnimationPreview">
+        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
+    </style>
 
 </resources>

@@ -72,6 +72,41 @@
             android:theme="@style/horizontal_slide">
         </activity>
         
+        <!-- 添加好友(第一个界面) -->
+        <activity 
+            android:name="com.itheima.huanxin.AddFriendsOneActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide">
+        </activity>
+        
+        <!-- 发起群聊  -->
+        <activity 
+            android:name="com.itheima.huanxin.CreateChatRoomActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide">
+        </activity> 
+        
+        <!-- 详细资料 -->
+        <activity 
+            android:name="com.itheima.huanxin.UserInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide">
+        </activity>
+        
+        <!-- 新的朋友界面 -->
+        <activity 
+            android:name="com.itheima.huanxin.NewFriendsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide">
+        </activity>
+        
+        <!-- 群聊界面 -->
+        <activity 
+            android:name="com.itheima.huanxin.ChatRoomActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide">
+        </activity>
+        
         <!-- 开机自启动服务 -->
         <receiver android:name="com.easemob.chat.StartServiceReceiver" >
             <intent-filter android:priority="1000" >
