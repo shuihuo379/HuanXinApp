@@ -13,16 +13,13 @@
  */
 package com.itheima.huanxin.db;
 
-import com.itheima.huanxin.applib.controller.HXSDKHelper;
-
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
- 
+import com.itheima.huanxin.applib.controller.HXSDKHelper;
 
 public class DbOpenHelper extends SQLiteOpenHelper{
-
 	private static final int DATABASE_VERSION = 1;
 	private static DbOpenHelper instance;
 	 
@@ -37,6 +34,17 @@ public class DbOpenHelper extends SQLiteOpenHelper{
             + UserDao.COLUMN_NAME_SIGN +" TEXT, "
             + UserDao.COLUMN_NAME_TEL +" TEXT, "            
             + UserDao.COLUMN_NAME_ID + " TEXT PRIMARY KEY);";
+	
+	private static final String INIVTE_MESSAGE_TABLE_CREATE = "CREATE TABLE "
+			+ InviteMessageDao.TABLE_NAME + " ("
+			+ InviteMessageDao.COLUMN_NAME_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+			+ InviteMessageDao.COLUMN_NAME_FROM + " TEXT, "
+			+ InviteMessageDao.COLUMN_NAME_GROUP_ID + " TEXT, "
+			+ InviteMessageDao.COLUMN_NAME_GROUP_Name + " TEXT, "
+			+ InviteMessageDao.COLUMN_NAME_REASON + " TEXT, "
+			+ InviteMessageDao.COLUMN_NAME_STATUS + " INTEGER, "
+			+ InviteMessageDao.COLUMN_NAME_ISINVITEFROMME + " INTEGER, "
+			+ InviteMessageDao.COLUMN_NAME_TIME + " TEXT); ";
     
 	
 	private DbOpenHelper(Context context) {
@@ -57,6 +65,7 @@ public class DbOpenHelper extends SQLiteOpenHelper{
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL(USERNAME_TABLE_CREATE);
+		db.execSQL(INIVTE_MESSAGE_TABLE_CREATE);
 	}
 
 	@Override

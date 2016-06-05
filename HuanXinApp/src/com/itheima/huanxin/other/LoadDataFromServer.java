@@ -33,7 +33,7 @@ import android.os.Message;
 import android.widget.Toast;
 
 /**
- * 图片异步加载类
+ * 异步加载类,封装请求数据方法于其中
  * @author zhangming
  * @date 2016/06/03
  */
@@ -53,7 +53,6 @@ public class LoadDataFromServer {
         this.context = context;
     }
 
-    //
     public LoadDataFromServer(Context context, String url,
             Map<String, String> map, List<String> members) {
         this.url = url;
@@ -70,27 +69,21 @@ public class LoadDataFromServer {
                 if (msg.what == 111 && dataCallBack != null) {
                     JSONObject jsonObject = (JSONObject) msg.obj;
                     if (jsonObject != null) {
-
                         dataCallBack.onDataCallBack(jsonObject);
-
                     } else {
-
-                        Toast.makeText(context, "访问服务器出错...", Toast.LENGTH_LONG)
-                                .show();
+                        Toast.makeText(context, "访问服务器出错...", Toast.LENGTH_LONG).show();
                     }
                 }
             }
         };
 
         new Thread() {
-
             @SuppressWarnings("rawtypes")
             public void run() {
                 HttpClient client = new DefaultHttpClient();
-
                 MultipartEntity entity = new MultipartEntity();
-
                 Set keys = map.keySet();
+                
                 if (keys != null) {
                     Iterator iterator = keys.iterator();
                     while (iterator.hasNext()) {
@@ -100,10 +93,8 @@ public class LoadDataFromServer {
                             File file = new File(value);
                             entity.addPart(key, new FileBody(file));
                         } else {
-
                             try {
-                                entity.addPart(key, new StringBody(value,
-                                        Charset.forName("UTF-8")));
+                                entity.addPart(key, new StringBody(value,Charset.forName("UTF-8")));
                             } catch (UnsupportedEncodingException e) {
                                 e.printStackTrace();
                             }
@@ -115,41 +106,32 @@ public class LoadDataFromServer {
                 // 可以将传入自定义的键名......
                 if (has_Array) {
                     for (int i = 0; i < members.size(); i++) {
-
                         try {
-                            entity.addPart(
-                                    "members[]",
-                                    new StringBody(members.get(i), Charset
-                                            .forName("UTF-8")));
+                            entity.addPart("members[]",new StringBody(members.get(i),Charset.forName("UTF-8")));
                         } catch (UnsupportedEncodingException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
                     }
                 }
 
-                client.getParams().setParameter(
-                        CoreConnectionPNames.CONNECTION_TIMEOUT, 30000);
+                client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 30000);
                 // 请求超时
-                client.getParams().setParameter(
-                        CoreConnectionPNames.SO_TIMEOUT, 30000);
+                client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 30000);
                 HttpPost post = new HttpPost(url);
                 post.setEntity(entity);
+                
                 StringBuilder builder = new StringBuilder();
                 try {
                     HttpResponse response = client.execute(post);
-
                     if (response.getStatusLine().getStatusCode() == 200) {
                         BufferedReader reader = new BufferedReader(
-                                new InputStreamReader(response.getEntity()
-                                        .getContent(), Charset.forName("UTF-8")));
-                        for (String s = reader.readLine(); s != null; s = reader
-                                .readLine()) {
+                                new InputStreamReader(response.getEntity().getContent(),
+                                	Charset.forName("UTF-8")));
+                        for (String s = reader.readLine(); s != null; s = reader.readLine()) {
                             builder.append(s);
                         }
                         String builder_BOM = jsonTokener(builder.toString());
-                        System.out.println("返回数据是------->>>>>>>>"
-                                + builder.toString());
+                        System.out.println("返回数据是------->>>>>>>>"+ builder.toString());
                         try {
                             JSONObject jsonObject = new JSONObject();
                             jsonObject = JSONObject.parseObject(builder_BOM);
@@ -160,19 +142,14 @@ public class LoadDataFromServer {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                     }
-
                 } catch (ClientProtocolException e) {
                     e.printStackTrace();
-
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             }
         }.start();
-
     }
 
     private String jsonTokener(String in) {
@@ -185,7 +162,6 @@ public class LoadDataFromServer {
 
     /**
      * 网路访问调接口
-     * 
      */
     public interface DataCallBack {
         void onDataCallBack(JSONObject data);

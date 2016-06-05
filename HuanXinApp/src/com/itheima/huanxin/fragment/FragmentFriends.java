@@ -107,6 +107,31 @@ public class FragmentFriends extends Fragment{
         });
 	}
 	
+	 // 刷新ui
+    public void refresh() {
+        try {
+            // 可能会在子线程中调到这方法
+            getActivity().runOnUiThread(new Runnable() {
+                public void run() {
+                    getContactList();
+                    contactAdapter.notifyDataSetChanged();
+                    tv_total.setText(String.valueOf(contactList.size())+"位联系人");
+                    /**
+                    if(((MainActivity)getActivity()).unreadAddressLable.getVisibility()==View.VISIBLE){
+                        tv_unread.setVisibility(View.VISIBLE);
+                        tv_unread.setText(((MainActivity)getActivity()).unreadAddressLable.getText());
+                    }else{
+                        tv_unread.setVisibility(View.GONE);
+                    }
+                    **/
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+	
 	/**
      * 获取联系人列表，并过滤掉黑名单和排序
      */

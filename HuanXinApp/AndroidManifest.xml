@@ -79,6 +79,20 @@
             android:theme="@style/horizontal_slide">
         </activity>
         
+        <!-- 添加好友(第二个界面) -->
+        <activity 
+            android:name="com.itheima.huanxin.AddFriendsTwoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide">
+        </activity>
+        
+        <!-- 添加好友(最后一个界面) -->
+        <activity 
+            android:name="com.itheima.huanxin.AddFriendsFinalActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide">
+        </activity>
+        
         <!-- 发起群聊  -->
         <activity 
             android:name="com.itheima.huanxin.CreateChatRoomActivity"
@@ -103,6 +117,13 @@
         <!-- 群聊界面 -->
         <activity 
             android:name="com.itheima.huanxin.ChatRoomActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide">
+        </activity>
+        
+        <!-- 聊天界面 -->
+        <activity 
+            android:name="com.itheima.huanxin.ChatActivity"
             android:screenOrientation="portrait"
             android:theme="@style/horizontal_slide">
         </activity>
