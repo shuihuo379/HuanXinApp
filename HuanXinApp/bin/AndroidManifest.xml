@@ -128,6 +128,20 @@
             android:theme="@style/horizontal_slide">
         </activity>
         
+        <!-- 我的信息界面  -->
+        <activity 
+            android:name="com.itheima.huanxin.MyUserInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide">
+        </activity>
+        
+        <!-- 设置界面  -->
+        <activity 
+            android:name="com.itheima.huanxin.SettingActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide">
+        </activity>
+        
         <!-- 开机自启动服务 -->
         <receiver android:name="com.easemob.chat.StartServiceReceiver" >
             <intent-filter android:priority="1000" >
