@@ -12,6 +12,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -47,6 +48,7 @@ public class FragmentFriends extends Fragment{
 	private TextView tv_unread;
 	private TextView tv_total;
 	private ContactAdapter contactAdapter;
+	private boolean hidden;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -107,6 +109,23 @@ public class FragmentFriends extends Fragment{
         });
 	}
 	
+	@Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        this.hidden = hidden;
+        if (!hidden) {
+            refresh();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!hidden) {
+            refresh();
+        }
+    }
+	
 	 // 刷新ui
     public void refresh() {
         try {
@@ -139,13 +158,16 @@ public class FragmentFriends extends Fragment{
         contactList.clear();
         // 获取本地好友列表
         Map<String, User> users = MyApplication.getInstance().getContactList();
+        Log.i("test","mapSize======>"+users.size());
         Iterator<Entry<String, User>> iterator = users.entrySet().iterator();
         while (iterator.hasNext()) {
             Entry<String, User> entry = iterator.next();
             if (!entry.getKey().equals(Constant.NEW_FRIENDS_USERNAME)
                     && !entry.getKey().equals(Constant.GROUP_USERNAME)
-                    && !blackList.contains(entry.getKey()))
+                    && !blackList.contains(entry.getKey())){
+            	Log.i("test","friend===>"+entry.getValue().getUsername());
                 contactList.add(entry.getValue());
+            }
         }
         // 对list进行排序
         Collections.sort(contactList, new PinyinComparator());

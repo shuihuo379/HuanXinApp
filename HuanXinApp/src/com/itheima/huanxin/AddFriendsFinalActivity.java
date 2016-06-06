@@ -23,6 +23,7 @@ public class AddFriendsFinalActivity extends BaseActivity{
 		final String hxid =this.getIntent().getStringExtra("hxid");
         TextView  tv_send= (TextView) this.findViewById(R.id.tv_send);
         final EditText et_reason= (EditText) this.findViewById(R.id.et_reason);
+        
         tv_send.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
