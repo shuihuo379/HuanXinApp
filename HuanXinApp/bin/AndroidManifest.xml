@@ -42,8 +42,10 @@
         <!-- 主页 -->
         <activity
             android:name="com.itheima.huanxin.MainActivity"
-            android:label="@string/app_name" 
-            android:theme="@style/horizontal_slide">
+            android:theme="@style/horizontal_slide"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
         </activity>
         
         <!-- 开屏页 -->
@@ -131,6 +133,20 @@
         <!-- 我的信息界面  -->
         <activity 
             android:name="com.itheima.huanxin.MyUserInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide">
+        </activity>
+        
+        <!-- 更新用户昵称 -->
+        <activity 
+            android:name="com.itheima.huanxin.UpdateNickActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide">
+        </activity>
+        
+        <!-- 更新用户微信号 -->
+        <activity 
+            android:name="com.itheima.huanxin.UpdateFxidActivity"
             android:screenOrientation="portrait"
             android:theme="@style/horizontal_slide">
         </activity>

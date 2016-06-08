@@ -105,6 +105,23 @@ public class MainActivity extends BaseActivity {
         updateUnreadAddressLable();
         EMChatManager.getInstance().activityResumed();
     }
+   
+    @Override
+    protected void onDestroy() {
+    	super.onDestroy();
+    	if(msgReceiver!=null){
+    		unregisterReceiver(msgReceiver);
+    		msgReceiver = null;
+    	}
+    	if(ackMessageReceiver!=null){
+    		unregisterReceiver(ackMessageReceiver);
+    		ackMessageReceiver = null;
+    	}
+    	if(cmdMessageReceiver!=null){
+    		unregisterReceiver(cmdMessageReceiver);
+    		cmdMessageReceiver = null;
+    	}
+    }
 	
 	private void initView(){
 		unreadLabel = (TextView) findViewById(R.id.unread_msg_number);

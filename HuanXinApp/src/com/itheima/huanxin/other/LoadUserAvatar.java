@@ -1,5 +1,6 @@
 package com.itheima.huanxin.other;
 
+import java.io.File;
 import java.io.InputStream;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -36,7 +37,7 @@ public class LoadUserAvatar {
 	public Bitmap loadImage(final ImageView imageView, final String imageUrl,
 	            final ImageDownloadedCallBack imageDownloadedCallBack) {
 		 final String filename = imageUrl.substring(imageUrl.lastIndexOf("/") + 1);
-	     final String filepath = fileUtil.getAbsolutePath() + filename;
+	     final String filepath = fileUtil.getAbsolutePath() + File.separator +filename;
 	     
 	     // 先从内存中拿
 	     Bitmap bitmap = bitmapCache.getBitmap(imageUrl);

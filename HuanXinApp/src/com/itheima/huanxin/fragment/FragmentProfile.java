@@ -2,11 +2,11 @@ package com.itheima.huanxin.fragment;
 
 import java.io.File;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,10 +15,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.easemob.EMCallBack;
 import com.itheima.app.Constant;
-import com.itheima.app.MyApplication;
-import com.itheima.huanxin.LoginActivity;
 import com.itheima.huanxin.MyUserInfoActivity;
 import com.itheima.huanxin.R;
 import com.itheima.huanxin.SettingActivity;
@@ -93,6 +90,7 @@ public class FragmentProfile extends Fragment{
 	}
 	
 	private void showUserAvatar(ImageView imageView, String avatar) {
+		Log.i("test","avatar======>"+avatar);
 		final String url_avatar = Constant.URL_Avatar + avatar;
 		imageView.setTag(url_avatar);
 		if (url_avatar != null && !url_avatar.equals("")) {
