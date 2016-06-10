@@ -127,7 +127,8 @@
         <activity 
             android:name="com.itheima.huanxin.ChatActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide">
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize">
         </activity>
         
         <!-- 我的信息界面  -->
