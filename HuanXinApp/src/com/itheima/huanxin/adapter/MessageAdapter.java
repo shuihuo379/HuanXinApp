@@ -98,10 +98,11 @@ public class MessageAdapter extends BaseAdapter{
             if (convertView == null) {
                holder = new ViewHolder();
                convertView = createViewByMessage(message, position);
+               holder.pb = (ProgressBar) convertView.findViewById(R.id.pb_sending);
+               holder.staus_iv = (ImageView) convertView.findViewById(R.id.msg_status);
+               
                if (message.getType() == EMMessage.Type.TXT) { //文本内容
             	   try {
-                       holder.pb = (ProgressBar) convertView.findViewById(R.id.pb_sending);
-                       holder.staus_iv = (ImageView) convertView.findViewById(R.id.msg_status);
                        holder.head_iv = (ImageView) convertView.findViewById(R.id.iv_userhead);
                        // 这里是文字内容
                        holder.tv = (TextView) convertView.findViewById(R.id.tv_chatcontent);

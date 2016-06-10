@@ -25,6 +25,8 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
+import com.easemob.EMConnectionListener;
+import com.easemob.EMError;
 import com.easemob.chat.EMChat;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMContactListener;
@@ -34,6 +36,7 @@ import com.easemob.chat.EMMessage;
 import com.easemob.chat.EMNotifier;
 import com.easemob.exceptions.EaseMobException;
 import com.easemob.util.HanziToPinyin;
+import com.easemob.util.NetUtils;
 import com.itheima.app.Constant;
 import com.itheima.app.MyApplication;
 import com.itheima.huanxin.db.InviteMessageDao;
@@ -48,6 +51,7 @@ import com.itheima.huanxin.fragment.FragmentProfile;
 import com.itheima.huanxin.other.LoadDataFromServer;
 import com.itheima.huanxin.other.LoadDataFromServer.DataCallBack;
 import com.itheima.huanxin.view.AddPopWindow;
+import com.itheima.util.T;
 
 /**
  * APP主界面
@@ -193,6 +197,8 @@ public class MainActivity extends BaseActivity {
         
         // setContactListener监听联系人的变化等
         EMContactManager.getInstance().setContactListener(new MyContactListener());
+        // 注册一个监听连接状态的listener
+        EMChatManager.getInstance().addConnectionListener(new MyConnectionListener());
         // 通知sdk，UI 已经初始化完毕，注册了相应的receiver和listener, 可以接受broadcast了
         EMChat.getInstance().setAppInited();
 	}
@@ -217,10 +223,9 @@ public class MainActivity extends BaseActivity {
             if (currentTabIndex == 0) {
                 // 当前页面如果为聊天历史页面，刷新此页面
                 if (homefragment != null) {
-                    //homefragment.refresh();
+                    homefragment.refresh(); //刷新对话界面新消息列表
                 }
             }
-
         }
     }
 
@@ -244,6 +249,7 @@ public class MainActivity extends BaseActivity {
         }
     };
 
+    
     /**
      * 透传消息BroadcastReceiver
      */
@@ -254,6 +260,47 @@ public class MainActivity extends BaseActivity {
         }
     };
 	
+    
+    /**
+     * 连接监听listener
+     */
+    private class MyConnectionListener implements EMConnectionListener {
+        @Override
+        public void onConnected() {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    homefragment.errorItem.setVisibility(View.GONE);
+                }
+            });
+        }
+
+        @Override
+        public void onDisconnected(final int error) {
+            final String st1 = getResources().getString(R.string.Less_than_chat_server_connection);
+            final String st2 = getResources().getString(R.string.the_current_network);
+            
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (error == EMError.USER_REMOVED) {
+                        // 显示帐号已经被移除
+                        T.show(MainActivity.this, "账号已移除");
+                    } else if (error == EMError.CONNECTION_CONFLICT) {
+                        // 显示帐号在其他设备登陆
+                        T.show(MainActivity.this,"帐号在其他设备登陆");
+                    } else {
+                        homefragment.errorItem.setVisibility(View.VISIBLE);
+                        if (NetUtils.hasNetwork(MainActivity.this)){
+                            homefragment.errorText.setText(st1);
+                        }else{
+                            homefragment.errorText.setText(st2);
+                        }
+                    }
+                }
+            });
+        }
+    }
 	
 	/**
      * 好友变化listener

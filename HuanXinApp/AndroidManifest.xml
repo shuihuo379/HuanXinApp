@@ -131,6 +131,14 @@
             android:windowSoftInputMode="adjustResize">
         </activity>
         
+        <!-- 单聊设置界面 -->
+        <activity 
+            android:name="com.itheima.huanxin.ChatSingleSettingActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="stateAlwaysHidden">
+        </activity>
+        
         <!-- 我的信息界面  -->
         <activity 
             android:name="com.itheima.huanxin.MyUserInfoActivity"

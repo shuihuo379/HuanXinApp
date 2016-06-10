@@ -24,7 +24,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -43,6 +42,11 @@ import com.itheima.huanxin.view.ExpandGridView;
 import com.itheima.huanxin.view.PasteEditText;
 import com.itheima.util.SmileUtils;
 
+/**
+ * 聊天模块
+ * @author zhangming
+ * @date 2016/06/10
+ */
 public class ChatActivity extends BaseActivity implements OnClickListener{
 	private PasteEditText mEditTextContent;
 	private RelativeLayout edittext_layout;
@@ -71,6 +75,9 @@ public class ChatActivity extends BaseActivity implements OnClickListener{
     private LinearLayout emojiIconContainer;
     private LinearLayout btnContainer;
     private View more;
+    
+    private ImageView iv_setting; 
+    private ImageView iv_setting_group; //设置按钮
     
     //反射的表情工具类
     private static final String flectExpressionClass = "com.itheima.util.SmileUtils";
@@ -238,6 +245,17 @@ public class ChatActivity extends BaseActivity implements OnClickListener{
                  EMChatManager.getInstance().getDeliveryAckMessageBroadcastAction());
          deliveryAckMessageIntentFilter.setPriority(5);
          registerReceiver(deliveryAckMessageReceiver,deliveryAckMessageIntentFilter);
+         
+         iv_setting = (ImageView) this.findViewById(R.id.iv_setting);  //单聊设置
+ 	     iv_setting_group = (ImageView) this.findViewById(R.id.iv_setting_group);  //群聊设置
+ 	     //默认单聊设置
+         iv_setting.setVisibility(View.VISIBLE);
+         iv_setting.setOnClickListener(new OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 startActivity(new Intent(ChatActivity.this,ChatSingleSettingActivity.class).putExtra("userId",toChatUsername));
+             }
+         });
 	}
 	
 	/**
