@@ -98,11 +98,11 @@ public class MessageAdapter extends BaseAdapter{
             if (convertView == null) {
                holder = new ViewHolder();
                convertView = createViewByMessage(message, position);
-               holder.pb = (ProgressBar) convertView.findViewById(R.id.pb_sending);
-               holder.staus_iv = (ImageView) convertView.findViewById(R.id.msg_status);
                
                if (message.getType() == EMMessage.Type.TXT) { //文本内容
             	   try {
+            		   holder.pb = (ProgressBar) convertView.findViewById(R.id.pb_sending);
+                       holder.staus_iv = (ImageView) convertView.findViewById(R.id.msg_status);
                        holder.head_iv = (ImageView) convertView.findViewById(R.id.iv_userhead);
                        // 这里是文字内容
                        holder.tv = (TextView) convertView.findViewById(R.id.tv_chatcontent);
@@ -161,19 +161,14 @@ public class MessageAdapter extends BaseAdapter{
             
             switch (message.getType()) {
             case TXT: // 文本
-            	//暂时只处理文本信息,之后会添加语音信息处理情况
-                handleTextMessage(message, holder, position);
-            }
-            
-            if (message.direct == EMMessage.Direct.SEND) {
-                View statusView = convertView.findViewById(R.id.msg_status);
-                // 重发按钮点击事件
-                statusView.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //TODO
-                    }
-                });
+            	if (!message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_VOICE_CALL, false)){
+            		handleTextMessage(message, holder, position);
+            	}else{
+            		// 语音电话
+            	}
+                break;
+            default:
+                break;
             }
             
             TextView timestamp = (TextView) convertView.findViewById(R.id.timestamp);
@@ -247,16 +242,29 @@ public class MessageAdapter extends BaseAdapter{
          if (message.direct == EMMessage.Direct.SEND) {
              switch (message.status) {
              case SUCCESS: // 发送成功
-                 holder.pb.setVisibility(View.GONE);
-                 holder.staus_iv.setVisibility(View.GONE);
+            	 if(holder.pb!=null){
+            		 holder.pb.setVisibility(View.GONE);
+            	 }
+            	 if(holder.staus_iv!=null){
+            		 holder.staus_iv.setVisibility(View.GONE);
+            	 }
+                 
                  break;
              case FAIL: // 发送失败
-                 holder.pb.setVisibility(View.GONE);
-                 holder.staus_iv.setVisibility(View.VISIBLE);
+            	 if(holder.pb!=null){
+            		 holder.pb.setVisibility(View.GONE);
+            	 }
+            	 if(holder.staus_iv!=null){
+            		 holder.staus_iv.setVisibility(View.VISIBLE);
+            	 }
                  break;
              case INPROGRESS: // 发送中
-                 holder.pb.setVisibility(View.VISIBLE);
-                 holder.staus_iv.setVisibility(View.GONE);
+            	 if(holder.pb!=null){
+            		 holder.pb.setVisibility(View.VISIBLE);
+            	 }
+            	 if(holder.staus_iv!=null){
+            		 holder.staus_iv.setVisibility(View.GONE);
+            	 }
                  break;
              default:
                  // 发送消息
@@ -272,8 +280,12 @@ public class MessageAdapter extends BaseAdapter{
      * @param position
      */
     public void sendMsgInBackground(final EMMessage message,final ViewHolder holder) {
-        holder.staus_iv.setVisibility(View.GONE);
-        holder.pb.setVisibility(View.VISIBLE);
+    	if(holder.staus_iv!=null){
+    		 holder.staus_iv.setVisibility(View.GONE);
+    	}
+    	if(holder.pb!=null){
+    		 holder.pb.setVisibility(View.VISIBLE);
+    	}
 
         final long start = System.currentTimeMillis();
         // 调用sdk发送异步发送方法

@@ -78,6 +78,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener{
     
     private ImageView iv_setting; 
     private ImageView iv_setting_group; //设置按钮
+    public static ChatActivity activityInstance = null;
     
     //反射的表情工具类
     private static final String flectExpressionClass = "com.itheima.util.SmileUtils";
@@ -206,6 +207,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener{
 	}
 	
 	private void setUpView(){
+		 activityInstance = this;
          iv_emoticons_normal.setOnClickListener(this);
          iv_emoticons_checked.setOnClickListener(this);
          manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -492,9 +494,16 @@ public class ChatActivity extends BaseActivity implements OnClickListener{
 		}
 	}
 	
+	public String getToChatUsername() {
+	    return toChatUsername;
+	}
+	
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+		if(activityInstance!=null){
+			activityInstance = null;
+		}
 		if(newMsgReceiver!=null){
 			unregisterReceiver(newMsgReceiver);
 		}
