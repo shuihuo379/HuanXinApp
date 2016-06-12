@@ -5,7 +5,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import com.itheima.huanxin.R;
 
 /**
  * 发现
@@ -16,8 +17,11 @@ public class FragmentFind extends Fragment{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		TextView tv = new TextView(getActivity());
-		tv.setText("发现...");
-		return tv;
+		return inflater.inflate(R.layout.fragment_find, container, false);
+	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
 	}
 }
