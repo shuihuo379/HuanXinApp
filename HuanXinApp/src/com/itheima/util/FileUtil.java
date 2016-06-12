@@ -1,14 +1,26 @@
 package com.itheima.util;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
  
+
+
+
+
+import java.io.OutputStream;
+
+import com.alibaba.fastjson.util.IOUtils;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.util.Log;
 
@@ -95,6 +107,32 @@ public class FileUtil {
 
         return file.exists();
     }
-
-  
+    
+    /**
+     * 压缩PNG格式图片文件
+     * @param srcFile
+     * @return
+     * @throws IOException
+     */
+    public static File compressPNGImage(File srcFile) throws IOException{
+    	Bitmap bitmap = BitmapFactory.decodeStream(new FileInputStream(srcFile));
+    	ByteArrayOutputStream baos = new ByteArrayOutputStream();  
+    	bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中  
+        int options = 100;  
+        while ( baos.toByteArray().length / 1024>80) {  //循环判断如果压缩后图片是否大于80kb,大于继续压缩         
+            baos.reset();//重置baos即清空baos  
+            bitmap.compress(Bitmap.CompressFormat.PNG, options, baos);//这里压缩options%，把压缩后的数据存放到baos中  
+            options -= 10;//每次都减少10  
+        }  
+        ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());//把压缩后的数据baos存放到ByteArrayInputStream中  
+   
+        File destFile = new File("compress_temp_photo.png");
+        OutputStream out = new FileOutputStream(srcFile);
+        int content;
+        while((content = isBm.read())!=-1){
+			out.write(content);
+			out.flush();
+        }
+        return destFile;
+    }
 }

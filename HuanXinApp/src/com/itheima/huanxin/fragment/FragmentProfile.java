@@ -114,7 +114,7 @@ public class FragmentProfile extends Fragment{
         super.onResume();
         String vatar_temp = LocalUserInfo.getInstance(getActivity()).getUserInfo("avatar");
         if (!vatar_temp.equals(avatar)) {
-            showUserAvatar(iv_avatar, avatar);
+            showUserAvatar(iv_avatar, vatar_temp); 
         }
 
         String nick_temp = LocalUserInfo.getInstance(getActivity()).getUserInfo("nick");
