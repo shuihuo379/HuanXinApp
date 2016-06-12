@@ -106,6 +106,7 @@ public class MainActivity extends BaseActivity {
    @Override
     protected void onResume() {
         super.onResume();
+        
         updateUnreadLabel();
         updateUnreadAddressLable();
         EMChatManager.getInstance().activityResumed();
@@ -565,13 +566,9 @@ public class MainActivity extends BaseActivity {
                         msg.setReason(reason_temp);
 
                         msg.setStatus(InviteMessageStatus.BEAGREED);
-                        User userTemp = MyApplication.getInstance()
-                                .getContactList()
-                                .get(Constant.NEW_FRIENDS_USERNAME);
-                        if (userTemp != null
-                                && userTemp.getUnreadMsgCount() == 0) {
-                            userTemp.setUnreadMsgCount(userTemp
-                                    .getUnreadMsgCount() + 1);
+                        User userTemp = MyApplication.getInstance().getContactList().get(Constant.NEW_FRIENDS_USERNAME);
+                        if (userTemp != null && userTemp.getUnreadMsgCount() == 0) {
+                            userTemp.setUnreadMsgCount(userTemp.getUnreadMsgCount() + 1);
                         }
                         notifyNewInviteMessage(msg);
                     }
@@ -691,8 +688,7 @@ public class MainActivity extends BaseActivity {
             user.setHeader("#");
         } else {
             user.setHeader(HanziToPinyin.getInstance()
-                    .get(headerName.substring(0, 1)).get(0).target.substring(0,
-                    1).toUpperCase());
+                .get(headerName.substring(0, 1)).get(0).target.substring(0,1).toUpperCase());
             char header = user.getHeader().toLowerCase().charAt(0);
             if (header < 'a' || header > 'z') {
                 user.setHeader("#");
@@ -717,8 +713,7 @@ public class MainActivity extends BaseActivity {
         }
 
         if (currentTabIndex != index) {
-            FragmentTransaction trx = getSupportFragmentManager()
-                    .beginTransaction();
+            FragmentTransaction trx = getSupportFragmentManager().beginTransaction();
             trx.hide(fragments[currentTabIndex]);
             if (!fragments[index].isAdded()) {
                 trx.add(R.id.fragment_container, fragments[index]);

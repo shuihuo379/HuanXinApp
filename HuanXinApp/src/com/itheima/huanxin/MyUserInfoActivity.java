@@ -280,8 +280,8 @@ public class MyUserInfoActivity extends BaseActivity{
             	if(temp_file!=null && temp_file.exists()){
 					temp_file.delete(); //删除裁切前保存的临时文件,确保myAppDir目录下只保留裁切后的文件
 				}
-                Bitmap bitmap = BitmapFactory.decodeFile(MyAppDir + File.separator +cutPhotoName);
-                iv_avatar.setImageBitmap(bitmap);
+                //Bitmap bitmap = BitmapFactory.decodeFile(MyAppDir + File.separator +cutPhotoName);
+                //iv_avatar.setImageBitmap(bitmap); //此处改为头像更新成功后再设置
                 updateAvatarInServer(cutPhotoName);  //上传头像到服务器中
                 break;
             }
@@ -305,12 +305,14 @@ public class MyUserInfoActivity extends BaseActivity{
         LoadDataFromServer task = new LoadDataFromServer(MyUserInfoActivity.this, Constant.URL_UPDATE_Avatar, map);
         task.getData(new DataCallBack() {
             @Override
-            public void onDataCallBack(JSONObject data) {
+            public void onDataCallBack(JSONObject data) { 
                 try {
                     int code = data.getInteger("code");
                     if (code == 1) {
                     	//保存用户头像信息
                         LocalUserInfo.getInstance(MyUserInfoActivity.this).setUserInfo("avatar", image); 
+                        Bitmap bitmap = BitmapFactory.decodeFile(MyAppDir + File.separator +cutPhotoName);
+                        iv_avatar.setImageBitmap(bitmap);  //此回调方法onDataCallBack是在主线程中调用的,直接设置即可
                     } else if (code == 2) {
                         Toast.makeText(MyUserInfoActivity.this, "更新失败...",Toast.LENGTH_SHORT).show();
                     } else if (code == 3) {

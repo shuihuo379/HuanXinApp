@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -89,8 +88,7 @@ public class FragmentProfile extends Fragment{
         showUserAvatar(iv_avatar, avatar);
 	}
 	
-	private void showUserAvatar(ImageView imageView, String avatar) {
-		Log.i("test","avatar======>"+avatar);
+	public void showUserAvatar(ImageView imageView, String avatar) {
 		final String url_avatar = Constant.URL_Avatar + avatar;
 		imageView.setTag(url_avatar);
 		if (url_avatar != null && !url_avatar.equals("")) {

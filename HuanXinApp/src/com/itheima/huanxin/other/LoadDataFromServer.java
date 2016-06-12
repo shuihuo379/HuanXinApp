@@ -69,7 +69,7 @@ public class LoadDataFromServer {
                 if (msg.what == 111 && dataCallBack != null) {
                     JSONObject jsonObject = (JSONObject) msg.obj;
                     if (jsonObject != null) {
-                        dataCallBack.onDataCallBack(jsonObject);
+                        dataCallBack.onDataCallBack(jsonObject); //在主线程回调此方法
                     } else {
                         Toast.makeText(context, "访问服务器出错...", Toast.LENGTH_LONG).show();
                     }
