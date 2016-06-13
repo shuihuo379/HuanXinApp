@@ -1,0 +1,114 @@
+# view res/layout/activity_chat.xml #generated:231
+-keep class android.support.v4.view.ViewPager { <init>(...); }
+
+# view AndroidManifest.xml #generated:184
+-keep class com.easemob.chat.EMChatService { <init>(...); }
+
+# view AndroidManifest.xml #generated:170
+-keep class com.easemob.chat.StartServiceReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:36
+-keep class com.itheima.app.MyApplication { <init>(...); }
+
+# view AndroidManifest.xml #generated:91
+-keep class com.itheima.huanxin.AddFriendsFinalActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:77
+-keep class com.itheima.huanxin.AddFriendsOneActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:84
+-keep class com.itheima.huanxin.AddFriendsTwoActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:126
+-keep class com.itheima.huanxin.ChatActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:119
+-keep class com.itheima.huanxin.ChatRoomActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:134
+-keep class com.itheima.huanxin.ChatSingleSettingActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:98
+-keep class com.itheima.huanxin.CreateChatRoomActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:63
+-keep class com.itheima.huanxin.LoginActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:42
+-keep class com.itheima.huanxin.MainActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:142
+-keep class com.itheima.huanxin.MyUserInfoActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:112
+-keep class com.itheima.huanxin.NewFriendsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:70
+-keep class com.itheima.huanxin.RegisterActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:163
+-keep class com.itheima.huanxin.SettingActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:51
+-keep class com.itheima.huanxin.SplashActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:156
+-keep class com.itheima.huanxin.UpdateFxidActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:149
+-keep class com.itheima.huanxin.UpdateNickActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:105
+-keep class com.itheima.huanxin.UserInfoActivity { <init>(...); }
+
+# view res/layout/expression_gridview.xml #generated:6
+-keep class com.itheima.huanxin.view.ExpandGridView { <init>(...); }
+
+# view res/layout/activity_chat.xml #generated:147
+-keep class com.itheima.huanxin.view.PasteEditText { <init>(...); }
+
+# view res/layout/fragment_contactlist.xml #generated:45
+-keep class com.itheima.huanxin.view.SideBar { <init>(...); }
+
+# onClick res/layout/activity_addfriends_final.xml #generated:14
+# onClick res/layout/activity_addfriends_one.xml #generated:13
+# onClick res/layout/activity_addfriends_two.xml #generated:18
+# onClick res/layout/activity_chat.xml #generated:15
+# onClick res/layout/activity_login.xml #generated:14
+# onClick res/layout/activity_myinfo.xml #generated:14
+# onClick res/layout/activity_newfriendsmsg.xml #generated:14
+# onClick res/layout/activity_register.xml #generated:13
+# onClick res/layout/activity_setting.xml #generated:14
+# onClick res/layout/activity_single_chat_setting.xml #generated:14
+# onClick res/layout/activity_update_fxid.xml #generated:14
+# onClick res/layout/activity_update_nick.xml #generated:14
+# onClick res/layout/activity_userinfo.xml #generated:14
+-keepclassmembers class * { *** back(...); }
+
+# onClick res/layout/activity_chat.xml #generated:147
+-keepclassmembers class * { *** editClick(...); }
+
+# onClick res/layout/activity_chat.xml #generated:187
+-keepclassmembers class * { *** more(...); }
+
+# onClick res/layout/activity_chat.xml #generated:196
+# onClick res/layout/activity_chat.xml #generated:264
+# onClick res/layout/activity_chat.xml #generated:294
+# onClick res/layout/activity_chat.xml #generated:324
+# onClick res/layout/activity_chat.xml #generated:354
+# onClick res/layout/activity_chat.xml #generated:393
+# onClick res/layout/activity_chat.xml #generated:424
+-keepclassmembers class * { *** onClick(...); }
+
+# onClick res/layout/activity_main.xml #generated:102
+# onClick res/layout/activity_main.xml #generated:144
+# onClick res/layout/activity_main.xml #generated:174
+# onClick res/layout/activity_main.xml #generated:60
+-keepclassmembers class * { *** onTabClicked(...); }
+
+# onClick res/layout/activity_chat.xml #generated:106
+-keepclassmembers class * { *** setModeKeyboard(...); }
+
+# onClick res/layout/activity_chat.xml #generated:97
+-keepclassmembers class * { *** setModeVoice(...); }
+
