@@ -26,7 +26,6 @@ import android.widget.TextView;
 import com.easemob.chat.EMContactManager;
 import com.itheima.app.Constant;
 import com.itheima.app.MyApplication;
-import com.itheima.huanxin.ChatRoomActivity;
 import com.itheima.huanxin.NewFriendsActivity;
 import com.itheima.huanxin.R;
 import com.itheima.huanxin.UserInfoActivity;
@@ -104,7 +103,7 @@ public class FragmentFriends extends Fragment{
         re_chatroom.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(),ChatRoomActivity.class)); 
+               // startActivity(new Intent(getActivity(),ChatRoomActivity.class)); 
             }
         });
 	}

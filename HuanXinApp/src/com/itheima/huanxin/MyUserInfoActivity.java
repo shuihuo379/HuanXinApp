@@ -14,7 +14,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -54,13 +53,14 @@ public class MyUserInfoActivity extends BaseActivity{
     
     private LoadUserAvatar avatarLoader;
     private String MyAppDir;
-    
+   
     private String hxid;
     private String fxid;
     private String sex;
     private String sign;
     private String nick;
     private String imageName;
+    private static final String cutPhotoName = "userinfo_cut_photo.png";
     
     private static final int PHOTO_REQUEST_TAKEPHOTO = 1; // 拍照
     private static final int PHOTO_REQUEST_GALLERY = 2; // 从相册中选择
@@ -78,6 +78,12 @@ public class MyUserInfoActivity extends BaseActivity{
 			String memRootDir = SDCardUtil.getPhoneCardPath();
 			MyAppDir = memRootDir+File.separator+"HuanXinApp";
 		}
+		
+		File cut_temp_file = new File(MyAppDir,cutPhotoName);
+		if(cut_temp_file!=null && cut_temp_file.exists()){
+			cut_temp_file.delete();
+		}
+		
 		avatarLoader = new LoadUserAvatar(this, MyAppDir);
 		initView();
 	}
@@ -231,7 +237,7 @@ public class MyUserInfoActivity extends BaseActivity{
         intent.putExtra("outputY", size);
         intent.putExtra("return-data", false);
 
-        intent.putExtra(MediaStore.EXTRA_OUTPUT,Uri.fromFile(new File(MyAppDir, imageName)));
+        intent.putExtra(MediaStore.EXTRA_OUTPUT,Uri.fromFile(new File(MyAppDir,cutPhotoName)));
         intent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString());
         intent.putExtra("noFaceDetection", true); // no face detection
         startActivityForResult(intent, PHOTO_REQUEST_CUT);
@@ -241,11 +247,13 @@ public class MyUserInfoActivity extends BaseActivity{
     protected void onRestart() {
     	super.onRestart();
     	String fxId = LocalUserInfo.getInstance(MyUserInfoActivity.this).getUserInfo("fxid");
-    	Log.i("test","fxId===>"+fxId);
-    	tv_fxid.setText(fxId);
+    	if (fxId.equals("0")) {
+    		tv_fxid.setText("微信号：未设置");
+    	}else{
+    		tv_fxid.setText(fxId);
+    	}
     	
     	String nick = LocalUserInfo.getInstance(MyUserInfoActivity.this).getUserInfo("nick");
-    	Log.i("test","nick===>"+nick);
     	tv_name.setText(nick);
     }
     
@@ -268,9 +276,13 @@ public class MyUserInfoActivity extends BaseActivity{
                 // * 这里再decodeFile()，返回的bitmap为空,但此时调用options.outHeight时，已经包含了图片的高了
                 // */
                 // options.inJustDecodeBounds = true;
-                Bitmap bitmap = BitmapFactory.decodeFile(MyAppDir + File.separator +imageName);
-                iv_avatar.setImageBitmap(bitmap);
-                updateAvatarInServer(imageName);  //上传头像到服务器中
+            	File temp_file = new File(MyAppDir,imageName);
+            	if(temp_file!=null && temp_file.exists()){
+					temp_file.delete(); //删除裁切前保存的临时文件,确保myAppDir目录下只保留裁切后的文件
+				}
+                Bitmap bitmap = BitmapFactory.decodeFile(MyAppDir + File.separator +cutPhotoName);
+                iv_avatar.setImageBitmap(bitmap); 
+                updateAvatarInServer(cutPhotoName);  //异步上传头像到服务器中
                 break;
             }
             super.onActivityResult(requestCode, resultCode, data);
@@ -293,11 +305,12 @@ public class MyUserInfoActivity extends BaseActivity{
         LoadDataFromServer task = new LoadDataFromServer(MyUserInfoActivity.this, Constant.URL_UPDATE_Avatar, map);
         task.getData(new DataCallBack() {
             @Override
-            public void onDataCallBack(JSONObject data) {
+            public void onDataCallBack(JSONObject data) { 
                 try {
                     int code = data.getInteger("code");
                     if (code == 1) {
-                        LocalUserInfo.getInstance(MyUserInfoActivity.this).setUserInfo("avatar", image); //保存用户头像信息
+                    	//保存用户头像信息
+                        LocalUserInfo.getInstance(MyUserInfoActivity.this).setUserInfo("avatar", image); 
                     } else if (code == 2) {
                         Toast.makeText(MyUserInfoActivity.this, "更新失败...",Toast.LENGTH_SHORT).show();
                     } else if (code == 3) {

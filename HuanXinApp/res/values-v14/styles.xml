@@ -1,12 +1,15 @@
 <resources>
-
     <!--
         Base application theme for API 14+. This theme completely replaces
         AppBaseTheme from BOTH res/values/styles.xml and
-        res/values-v11/styles.xml on API 14+ devices.
-    -->
-    <style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        res/values-v11/styles.xml on API 14+ devices.    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
         <!-- API 14 theme customizations can go here. -->
+    </style>
+
+    <!-- 使用增加的自定义样式作为主题样式 -->
+    <style name="horizontal_slide" parent="android:style/Theme.Holo.Light.NoActionBar">
+        <item name="android:windowAnimationStyle">@style/AnimFade2</item>
     </style>
 
 </resources>

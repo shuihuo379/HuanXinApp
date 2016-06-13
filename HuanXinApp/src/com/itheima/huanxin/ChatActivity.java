@@ -398,22 +398,24 @@ public class ChatActivity extends BaseActivity implements OnClickListener{
 	 * @param content
 	 */
 	private void sendText(String content) {
-		EMMessage message = EMMessage.createSendMessage(EMMessage.Type.TXT);
-		
-		//默认是单聊
-		TextMessageBody txtBody = new TextMessageBody(content);
-		message.addBody(txtBody); // 设置消息body
-		// 设置要发给谁,用户username或者群聊groupid
-		message.setReceipt(toChatUsername);
-		message.setAttribute("useravatar", myUserAvatar);
-		message.setAttribute("usernick", myUserNick);
-		conversation.addMessage(message); // 把messgage加到conversation中
-		
-		// 通知adapter有消息变动,adapter会根据加入的这条message显示消息和调用sdk的发送方法
-		mAdapter.refresh();
-		listView.setSelection(listView.getCount()-1);
-		mEditTextContent.setText("");
-		setResult(RESULT_OK);
+		if (content.length() > 0) {
+			EMMessage message = EMMessage.createSendMessage(EMMessage.Type.TXT);
+			
+			//默认是单聊
+			TextMessageBody txtBody = new TextMessageBody(content);
+			message.addBody(txtBody); // 设置消息body
+			// 设置要发给谁,用户username或者群聊groupid
+			message.setReceipt(toChatUsername);
+			message.setAttribute("useravatar", myUserAvatar);
+			message.setAttribute("usernick", myUserNick);
+			conversation.addMessage(message); // 把messgage加到conversation中
+			
+			// 通知adapter有消息变动,adapter会根据加入的这条message显示消息和调用sdk的发送方法
+			mAdapter.refresh();
+			listView.setSelection(listView.getCount()-1);
+			mEditTextContent.setText("");
+			setResult(RESULT_OK);
+		}
 	}
 
 	/**
@@ -480,6 +482,14 @@ public class ChatActivity extends BaseActivity implements OnClickListener{
             mAdapter.notifyDataSetChanged();
         }
     };
+    
+    /**
+     * 显示或隐藏图标按钮页
+     * @param view
+     */
+    public void more(View view) {
+        //TODO dosomething
+    }
 	
 	
 	/**

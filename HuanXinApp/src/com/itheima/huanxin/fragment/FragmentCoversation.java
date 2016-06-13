@@ -27,6 +27,7 @@ import com.itheima.huanxin.adapter.ConversationAdapter;
  * @date 2016/06/04
  */
 public class FragmentCoversation extends Fragment{
+	private boolean hidden;
     private ListView listView;
     private ConversationAdapter adapter;
 	private List<EMConversation> normal_list = new ArrayList<EMConversation>();
@@ -104,5 +105,24 @@ public class FragmentCoversation extends Fragment{
                 }
             }
         });
+    }
+    
+    
+    //------------以下为解决读取消息后仍然有未读红色数字在头像右上方处的问题------------//
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        this.hidden = hidden;
+        if (!hidden) {
+            refresh();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!hidden) {
+            refresh();
+        }
     }
 }

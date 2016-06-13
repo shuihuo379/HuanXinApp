@@ -10,7 +10,6 @@ import android.text.Spannable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -44,6 +43,9 @@ public class MessageAdapter extends BaseAdapter{
     private EMConversation conversation;
     private LoadUserAvatar avatarLoader;
     private LayoutInflater inflater;
+    
+    private static final int MESSAGE_TYPE_RECV_TXT = 0;
+    private static final int MESSAGE_TYPE_SENT_TXT = 1;
 	
 	public MessageAdapter(Context context, String username) {
         this.username = username;
@@ -76,6 +78,28 @@ public class MessageAdapter extends BaseAdapter{
 	public long getItemId(int position) {
 		return position;
 	}
+	
+	/*--------------- BEGIN 覆写BaseAdapter的两个方法,解决消息发送时收发类型错乱问题  ------------------*/
+	
+   /**
+    * 获取item类型
+    */
+	@Override
+	public int getItemViewType(int position) {
+		EMMessage message = conversation.getMessage(position);
+        if (message.getType() == EMMessage.Type.TXT) {
+        	//暂时不涉及语音信息收发判断,此处只判断文本信息
+        	return message.direct == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_TXT: MESSAGE_TYPE_SENT_TXT;
+        }
+		return -1; //失效
+	}
+	
+	@Override
+	public int getViewTypeCount() {
+		return 2;
+	}
+
+	/*------------------------------------ END ------------------------------------------*/
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -170,6 +194,8 @@ public class MessageAdapter extends BaseAdapter{
             default:
                 break;
             }
+            //TODO 重发部分去除
+            
             
             TextView timestamp = (TextView) convertView.findViewById(R.id.timestamp);
             if (position == 0) {
@@ -338,7 +364,7 @@ public class MessageAdapter extends BaseAdapter{
 	private View createViewByMessage(EMMessage message, int position) {
     	//TODO LOCATION IMAGE VOICE VIDEO FILE
     	switch (message.getType()) {
-    	 	default:
+    	default:
             return message.direct == EMMessage.Direct.RECEIVE ? 
             		inflater.inflate(R.layout.row_received_message, null) : 
             		inflater.inflate(R.layout.row_sent_message, null);

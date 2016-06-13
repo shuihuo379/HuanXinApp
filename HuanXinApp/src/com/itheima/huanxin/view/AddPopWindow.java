@@ -12,7 +12,6 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
 import com.itheima.huanxin.AddFriendsOneActivity;
-import com.itheima.huanxin.CreateChatRoomActivity;
 import com.itheima.huanxin.R;
 
 public class AddPopWindow extends PopupWindow{
@@ -37,8 +36,8 @@ public class AddPopWindow extends PopupWindow{
         // 设置SelectPicPopupWindow弹出窗体动画效果
         this.setAnimationStyle(R.style.AnimationPreview);
         
-        RelativeLayout  re_addfriends =(RelativeLayout) contentView.findViewById(R.id.re_addfriends);
-        RelativeLayout  re_chatroom =(RelativeLayout) contentView.findViewById(R.id.re_chatroom);
+        RelativeLayout re_addfriends =(RelativeLayout) contentView.findViewById(R.id.re_addfriends);
+        RelativeLayout re_chatroom =(RelativeLayout) contentView.findViewById(R.id.re_chatroom);
         re_addfriends.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -49,7 +48,7 @@ public class AddPopWindow extends PopupWindow{
         re_chatroom.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
-            	activity.startActivity(new Intent(activity,CreateChatRoomActivity.class));  
+            	//activity.startActivity(new Intent(activity,CreateChatRoomActivity.class));  
                 AddPopWindow.this.dismiss();
             }
         } );
