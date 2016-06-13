@@ -198,8 +198,7 @@ public class LoginActivity extends BaseActivity{
 	                        public void run() {
 	                            dialog.dismiss();
 	                            Toast.makeText(getApplicationContext(),
-	                                    getString(R.string.Login_failed) + message,
-	                                    Toast.LENGTH_SHORT).show();
+	                                  getString(R.string.Login_failed) + message,Toast.LENGTH_SHORT).show();
 	                        }
 	                    });
 	                }
@@ -336,8 +335,7 @@ public class LoginActivity extends BaseActivity{
         // 添加user"申请与通知"
         User newFriends = new User();
         newFriends.setUsername(Constant.NEW_FRIENDS_USERNAME);
-        String strChat = getResources().getString(
-                R.string.Application_and_notify);
+        String strChat = getResources().getString(R.string.Application_and_notify);
         newFriends.setNick(strChat);
         newFriends.setBeizhu("");
         newFriends.setFxid("");

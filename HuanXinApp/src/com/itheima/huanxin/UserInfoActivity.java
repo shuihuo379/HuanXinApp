@@ -86,6 +86,7 @@ public class UserInfoActivity extends BaseActivity{
             }
         });
         
+        /** 去除未加好友直接聊天的功能
         Button btn_new= (Button) this.findViewById(R.id.btn_new);
         btn_new.setOnClickListener(new OnClickListener() {
             @Override
@@ -102,6 +103,7 @@ public class UserInfoActivity extends BaseActivity{
                 startActivity(intent);
             }
         });
+        **/
        refresh();
 	}
 	

@@ -8,7 +8,6 @@ import java.util.Map;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -51,7 +50,6 @@ public class MyUserInfoActivity extends BaseActivity{
     private TextView tv_fxid;
     private TextView tv_sex;
     private TextView tv_sign;
-    private ProgressDialog dialog;
     
     private LoadUserAvatar avatarLoader;
     private String MyAppDir;
@@ -103,8 +101,6 @@ public class MyUserInfoActivity extends BaseActivity{
         re_fxid = (RelativeLayout) this.findViewById(R.id.re_fxid);
         re_sex = (RelativeLayout) this.findViewById(R.id.re_sex);
         re_region = (RelativeLayout) this.findViewById(R.id.re_region);
-        
-        dialog = new ProgressDialog(MyUserInfoActivity.this);
         
         MyListener listener = new MyListener();
         re_avatar.setOnClickListener(listener);
@@ -284,9 +280,9 @@ public class MyUserInfoActivity extends BaseActivity{
             	if(temp_file!=null && temp_file.exists()){
 					temp_file.delete(); //删除裁切前保存的临时文件,确保myAppDir目录下只保留裁切后的文件
 				}
-                //Bitmap bitmap = BitmapFactory.decodeFile(MyAppDir + File.separator +cutPhotoName);
-                //iv_avatar.setImageBitmap(bitmap); //此处改为头像更新成功后再设置
-                updateAvatarInServer(cutPhotoName);  //上传头像到服务器中
+                Bitmap bitmap = BitmapFactory.decodeFile(MyAppDir + File.separator +cutPhotoName);
+                iv_avatar.setImageBitmap(bitmap); 
+                updateAvatarInServer(cutPhotoName);  //异步上传头像到服务器中
                 break;
             }
             super.onActivityResult(requestCode, resultCode, data);
@@ -298,11 +294,6 @@ public class MyUserInfoActivity extends BaseActivity{
 	 * @param image 头像文件的名称
 	 */
     private void updateAvatarInServer(final String image) {
-    	dialog.setMessage("正在上传头像...");
-		dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-		dialog.setCancelable(false); //强制霸占焦点
-		dialog.show();
-		
         Map<String, String> map = new HashMap<String, String>();
         if ((new File(MyAppDir,image)).exists()) {
             map.put("file", MyAppDir + File.separator + image);
@@ -320,21 +311,14 @@ public class MyUserInfoActivity extends BaseActivity{
                     if (code == 1) {
                     	//保存用户头像信息
                         LocalUserInfo.getInstance(MyUserInfoActivity.this).setUserInfo("avatar", image); 
-                        Bitmap bitmap = BitmapFactory.decodeFile(MyAppDir + File.separator +cutPhotoName);
-                        iv_avatar.setImageBitmap(bitmap);  //此回调方法onDataCallBack是在主线程中调用的,直接设置即可
-                        dialog.dismiss();
                     } else if (code == 2) {
-                    	dialog.dismiss();
                         Toast.makeText(MyUserInfoActivity.this, "更新失败...",Toast.LENGTH_SHORT).show();
                     } else if (code == 3) {
-                    	dialog.dismiss();
                         Toast.makeText(MyUserInfoActivity.this, "图片上传失败...",Toast.LENGTH_SHORT).show();
                     } else {
-                    	dialog.dismiss();
                         Toast.makeText(MyUserInfoActivity.this, "服务器繁忙请重试...",Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
-                	dialog.dismiss();
                     Toast.makeText(MyUserInfoActivity.this, "数据解析错误...",Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
