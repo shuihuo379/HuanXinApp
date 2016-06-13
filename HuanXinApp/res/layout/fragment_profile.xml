@@ -73,7 +73,7 @@
     <RelativeLayout
         android:id="@+id/re_xiangce"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp50"
+        android:layout_height="@dimen/dp40"
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true"
         android:paddingLeft="@dimen/dp12" >
@@ -108,7 +108,7 @@
     <RelativeLayout
         android:id="@+id/re_shoucang"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp50"
+        android:layout_height="@dimen/dp40"
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true"
         android:paddingLeft="@dimen/dp12" >
@@ -136,7 +136,7 @@
     <RelativeLayout
         android:id="@+id/re_money_bag"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp50"
+        android:layout_height="@dimen/dp40"
         android:layout_marginTop="@dimen/dp20"
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true"
@@ -172,7 +172,7 @@
     <RelativeLayout
         android:id="@+id/re_card_bag"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp50"
+        android:layout_height="@dimen/dp40"
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true"
         android:paddingLeft="@dimen/dp12" >
@@ -200,7 +200,7 @@
     <RelativeLayout
         android:id="@+id/re_setting"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp50"
+        android:layout_height="@dimen/dp40"
         android:layout_marginTop="@dimen/dp20"
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true"

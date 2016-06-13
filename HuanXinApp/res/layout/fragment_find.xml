@@ -8,7 +8,7 @@
     <RelativeLayout
         android:id="@+id/re_friends"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp50"
+        android:layout_height="@dimen/dp40"
         android:layout_marginTop="@dimen/dp20"
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true"
@@ -37,7 +37,7 @@
     <RelativeLayout
         android:id="@+id/re_erweima"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp50"
+        android:layout_height="@dimen/dp40"
         android:layout_marginTop="@dimen/dp20"
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true"
@@ -73,7 +73,7 @@
     <RelativeLayout
         android:id="@+id/re_yaoyiyao"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp50"
+        android:layout_height="@dimen/dp40"
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true"
         android:paddingLeft="@dimen/dp12" >
@@ -101,7 +101,7 @@
     <RelativeLayout
         android:id="@+id/re_fujin"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp50"
+        android:layout_height="@dimen/dp40"
         android:layout_marginTop="@dimen/dp20"
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true"
@@ -137,7 +137,7 @@
     <RelativeLayout
         android:id="@+id/re_piaoliuping"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp50"
+        android:layout_height="@dimen/dp40"
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true"
         android:paddingLeft="@dimen/dp12" >
@@ -165,7 +165,7 @@
     <RelativeLayout
         android:id="@+id/re_gouwu"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp50"
+        android:layout_height="@dimen/dp40"
         android:layout_marginTop="@dimen/dp20"
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true"
@@ -201,7 +201,7 @@
     <RelativeLayout
         android:id="@+id/re_youxi"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp50"
+        android:layout_height="@dimen/dp40"
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true"
         android:paddingLeft="@dimen/dp12" >
